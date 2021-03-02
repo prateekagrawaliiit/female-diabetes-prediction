@@ -2,7 +2,7 @@
 # @Author: prateek
 # @Date:   2021-03-02 02:23:36
 # @Last Modified by:   prateek
-# @Last Modified time: 2021-03-02 03:43:24
+# @Last Modified time: 2021-03-02 22:52:03
 
 import streamlit as st
 import numpy as np
@@ -33,9 +33,9 @@ def app():
     """)
      st.write('Please fill in the following form click on the button below!')
 
-     name = st.text_input('Name','Please Enter Your Name')
-     phone = st.text_input('Mobile Number','Please Enter Your Mobile Number')
-     email = st.text_input('Email','Please Enter Your Email')
+     name = st.text_input('Please Enter Your Name','')
+     phone = st.text_input('Please Enter Your Mobile Number','')
+     email = st.text_input('Please Enter Your Email','')
      
      st.markdown("""### Age""")
      age = st.number_input("", 1, 150, 25, 1)
@@ -53,10 +53,11 @@ def app():
      bmi =           st.slider("", 0.0, 67.1, 31.4, 0.1)
      st.markdown("""### Diabetics Pedigree Function""")
      dpf =           st.slider("", 0.000, 2.420, 0.471, 0.001)
+     st.markdown("""""")
 
      row = [pregnancies, glucose, bloodpressure, skinthickness, insulin, bmi, dpf, age]
      patient_data = [name,phone,email,age,pregnancies, glucose, skinthickness, bloodpressure,insulin, bmi, dpf]
-     if (st.button('Check Health Status')):
+     if (st.button('Check Health Status',width = 400)):
          feat_cols = ['Pregnancies', 'Glucose', 'BloodPressure', 'SkinThickness', 'Insulin', 'BMI', 'DiabetesPedigreeFunction', 'Age']
          sc, model = load('models/scaler.joblib', 'models/model.joblib')
          pred,result = inference(row, sc, model, feat_cols)
@@ -70,3 +71,14 @@ def app():
          patient_df = pd.read_csv('./patient_data.csv')
          patient_df.loc[len(patient_df)] = list(patient_data)
          patient_df.to_csv('./patient_data.csv',index=False)
+
+         st.markdown(
+            """
+            ## Prevention
+
+            Simple lifestyle measures have been shown to be effective in preventing or delaying the onset of type 2 diabetes. To help prevent type 2 diabetes and its complications, people should:
+            * achieve and maintain a healthy body weight;
+            * be physically active – doing at least 30 minutes of regular, moderate-intensity activity on most days. More activity is required for weight control;
+            * eat a healthy diet, avoiding sugar and saturated fats; and
+            * avoid tobacco use – smoking increases the risk of diabetes and cardiovascular disease.
+            """)
