@@ -2,7 +2,7 @@
 # @Author: prateek
 # @Date:   2021-03-02 02:21:51
 # @Last Modified by:   prateek
-# @Last Modified time: 2021-03-02 03:03:04
+# @Last Modified time: 2021-03-02 23:19:31
 """Frameworks for running multiple Streamlit applications as a single app.
 """
 import streamlit as st
@@ -43,11 +43,7 @@ class MultiApp:
             "function": func
         })
 
-    def run(self):
-        # app = st.sidebar.radio(
-        st.sidebar.title("Diabetes Detection")
-        st.sidebar.success(
-    "Dibetes Prediction with The power of **Artificial Intelligence**!")
+    def run(self):        
         st.sidebar.header('Navigation')
         app = st.sidebar.radio(
             '',

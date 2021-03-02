@@ -2,7 +2,7 @@
 # @Author: prateek
 # @Date:   2021-03-02 02:23:36
 # @Last Modified by:   prateek
-# @Last Modified time: 2021-03-02 22:52:03
+# @Last Modified time: 2021-03-02 23:23:40
 
 import streamlit as st
 import numpy as np
@@ -22,8 +22,8 @@ def inference(row, scaler, model, feat_cols):
     X = scaler.transform(df)
     features = pd.DataFrame(X, columns = feat_cols)
     if (model.predict(features)==0):
-        return 0,"Congratulations!!!. Based on our estimation we believe that you currently do not have diabetes. We however would like to ask you to stay safe and stay healthy."
-    else: return 1,"We regret to inform you that based on our estimation we believe that you have chances of being diabetic. We request you to kindly visit a doctor."
+        return 0
+    else: return 1,
 
 
 def app():     
@@ -53,20 +53,19 @@ def app():
      bmi =           st.slider("", 0.0, 67.1, 31.4, 0.1)
      st.markdown("""### Diabetics Pedigree Function""")
      dpf =           st.slider("", 0.000, 2.420, 0.471, 0.001)
-     st.markdown("""""")
 
      row = [pregnancies, glucose, bloodpressure, skinthickness, insulin, bmi, dpf, age]
      patient_data = [name,phone,email,age,pregnancies, glucose, skinthickness, bloodpressure,insulin, bmi, dpf]
-     if (st.button('Check Health Status',width = 400)):
+     if (st.button('Check Health Status')):
          feat_cols = ['Pregnancies', 'Glucose', 'BloodPressure', 'SkinThickness', 'Insulin', 'BMI', 'DiabetesPedigreeFunction', 'Age']
          sc, model = load('models/scaler.joblib', 'models/model.joblib')
-         pred,result = inference(row, sc, model, feat_cols)
+         pred = inference(row, sc, model, feat_cols)
          if pred == 0 :
-            st.success(result)
+            st.success("""# Congratulations . 
+            Based on your responses, we believe that you are not at a risk of being diabetic at present. Staying safe and engaging in a healthy lifestyle are proactive measures that keep diabetes at bay! """)
             st.balloons()
-
          else :
-            st.warning(result)
+            st.warning("""Based on your responses, we recommend consulting a professional, as you might be at a risk of being diabetic. Please also check out the prevention page. We have some tips that might help you become healthy and fit.""")
          patient_data.append(pred)
          patient_df = pd.read_csv('./patient_data.csv')
          patient_df.loc[len(patient_df)] = list(patient_data)
