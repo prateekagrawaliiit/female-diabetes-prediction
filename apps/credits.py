@@ -2,14 +2,14 @@
 # @Author: prateek
 # @Date:   2021-03-02 22:37:41
 # @Last Modified by:   prateek
-# @Last Modified time: 2021-03-02 23:25:34
+# @Last Modified time: 2021-03-02 23:38:33
 
 import streamlit as st
 
 def app():
     st.title(' Credits')
 
-    st.write("""The following web application is built and maintained by **Prateek Agrawal** for the sole purpose of learning and displaying the power and usage of machine learning in the field of healthcare. He believes that the Artificial Intelligence and Machine Learning can truly help make the world a better place to live in.""")
+    st.write("""The following web application is built and maintained by **Prateek Agrawal** for the sole purpose of learning and displaying the power and usage of machine learning in the field of healthcare. He believes that the Artificial Intelligence and Machine Learning can truly help in making the world a better place to live in.""")
 
     st.write("""
 
