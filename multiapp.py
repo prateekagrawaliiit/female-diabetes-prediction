@@ -2,7 +2,7 @@
 # @Author: prateek
 # @Date:   2021-03-02 02:21:51
 # @Last Modified by:   prateek
-# @Last Modified time: 2021-03-02 23:19:31
+# @Last Modified time: 2021-03-14 23:56:48
 """Frameworks for running multiple Streamlit applications as a single app.
 """
 import streamlit as st
@@ -51,3 +51,11 @@ class MultiApp:
             format_func=lambda app: app['title'])
 
         app['function']()
+        with open('counts.txt','r+') as f:
+            data = f.readlines()
+            # print(data)
+            st.sidebar.markdown("""Number of times app used : **"""+data[0].split(',')[0]+"**")
+            st.sidebar.markdown("""Potential Diabetes cases : **"""+data[0].split(',')[1]+"**")
+            st.sidebar.markdown("""Potential Non-Diabetes cases : **"""+data[0].split(',')[2]+"**")
+
+

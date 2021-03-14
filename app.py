@@ -12,7 +12,5 @@ app.add_app("Health Check", diabetes_prediction.app)
 app.add_app("About-Diabetes", about.app)
 app.add_app("Prevention", prevention.app)
 app.add_app("Credits", credits.app)
-
-
 app.run()
 
